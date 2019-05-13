@@ -19,6 +19,7 @@ RUN set -x \
 COPY conf.d/*                /etc/mysql/conf.d/
 COPY *.sh                    /usr/local/bin/
 COPY bin/galera-healthcheck  /usr/local/bin/galera-healthcheck
+COPY bin/k8s-backup          /usr/local/bin/k8s-backup
 COPY primary-component.sql   /
 
 # Fix permissions
