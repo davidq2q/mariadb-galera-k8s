@@ -19,8 +19,11 @@ RUN set -x \
 COPY conf.d/*                /etc/mysql/conf.d/
 COPY *.sh                    /usr/local/bin/
 COPY bin/galera-healthcheck  /usr/local/bin/galera-healthcheck
-COPY bin/k8s-backup          /usr/local/bin/k8s-backup
 COPY primary-component.sql   /
+
+# Add k8s-backup
+RUN curl -L https://github.com/davidq2q/k8s-galera-hook/releases/download/latest/k8s-backup -o /usr/local/bin/k8s-backup
+RUN chmod +x /usr/local/bin/k8s-backup
 
 # Fix permissions
 RUN chown -R mysql:mysql /etc/mysql && chmod -R go-w /etc/mysql
